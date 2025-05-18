@@ -21,3 +21,13 @@ sudo podman run -it --rm --name nginx -v ${PWD}:/letsencrypt -p 80:80 -p 443:443
 
 #
 sudo podman run -it --rm --name nginx -v ${PWD}/nginx.conf:/etc/nginx/nginx.conf -v ${PWD}/certs:/etc/letsencrypt -p 80:80 -p 443:443 nginx
+
+
+#selinux
+sudo podman run -it --rm --name nginx \
+  -v ${PWD}/nginx.conf:/etc/nginx/nginx.conf:Z \
+  -v ${PWD}:/letsencrypt:Z \
+  -v ${PWD}/certs:/etc/letsencrypt:Z \
+  -p 80:80 \
+  -p 443:443 \
+  nginx
