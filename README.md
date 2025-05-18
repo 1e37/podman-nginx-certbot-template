@@ -9,5 +9,8 @@ sudo podman build -t certbot .
 sudo podman run -it --rm --name certbot -v ${PWD}:/letsencrypt:Z -v ${PWD}/certs:/etc/letsencrypt:Z certbot bash
 
 
-Then, create and run the nginx container:
+Same leasson for nginx:
 
+sudo podman build -t nginx .
+
+sudo podman run -it --rm --name nginx -v ${PWD}:/letsencrypt -v ${PWD}/certs:/etc/letsencrypt -p 80:80 -p 443:443
