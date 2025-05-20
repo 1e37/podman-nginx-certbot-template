@@ -13,6 +13,14 @@ Same  for nginx:
 
 sudo podman build -t nginx .
 
+podman run -it --rm --name nginx \
+  -v ${PWD}:/letsencrypt \
+  -v ${PWD}/certs:/etc/letsencrypt \
+  -p 80:80 -p 443:443 \
+  docker.io/library/nginx:latest
+  
+  ------
+
 sudo podman run -it --rm --name nginx -v ${PWD}:/letsencrypt -v ${PWD}/certs:/etc/letsencrypt -p 80:80 -p 443:443
 sudo podman run -it --rm --name nginx -v ${PWD}:/letsencrypt -p 80:80 -p 443:443
 
